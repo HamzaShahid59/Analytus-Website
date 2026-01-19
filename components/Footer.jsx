@@ -1,47 +1,63 @@
 'use client'
 
-import { Box, Container, Divider, Grid, IconButton, Stack, Typography, useTheme } from '@mui/material'
-import { Code, Linkedin } from 'lucide-react'
-import Link from 'next/link'
-import React from 'react'
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import GitHubIcon from '@mui/icons-material/GitHub';
+import React from "react";
+import { Box, Container, Typography, useTheme } from "@mui/material";
+import Link from "next/link";
 
 const Footer = () => {
+  const theme = useTheme();
 
-    const theme = useTheme()
+  return (
+    <Box sx={{ borderTop: '1px solid', borderColor: 'divider', mt: 8, bgcolor: 'white' }}>
+      <Container maxWidth="xl" sx={{ py: 4 }}>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 2, justifyContent: 'space-between', alignItems: { xs: 'flex-start', md: 'center' } }}>
+          <Box>
+            <Typography sx={{ fontWeight: 700, color: theme.palette.primary.main }}>
+              Analytus
+            </Typography>
+            <Typography variant="body2" sx={{ opacity: 0.8, mt: 0.5 }}>
+              Data. Insights. Outcomes.
+            </Typography>
+          </Box>
 
-    const currentYear = new Date().getFullYear();
+          <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
+            <Typography
+              component={Link}
+              href="/#about"
+              sx={{ textDecoration: 'none', color: 'text.primary', '&:hover': { color: theme.palette.primary.main } }}
+            >
+              About
+            </Typography>
+            <Typography
+              component={Link}
+              href="/#services"
+              sx={{ textDecoration: 'none', color: 'text.primary', '&:hover': { color: theme.palette.primary.main } }}
+            >
+              Services
+            </Typography>
+            <Typography
+              component={Link}
+              href="/jobs"
+              sx={{ textDecoration: 'none', color: 'text.primary', '&:hover': { color: theme.palette.primary.main } }}
+            >
+              Jobs
+            </Typography>
+            <Typography
+              component={Link}
+              href="/#contact"
+              sx={{ textDecoration: 'none', color: 'text.primary', '&:hover': { color: theme.palette.primary.main } }}
+            >
+              Contact
+            </Typography>
+          </Box>
+        </Box>
 
-    return (
-        <>
-            <footer className="bg-[#F5F5F580]">
-                <Container maxWidth='lg'>
-                    <Divider />
+        <Typography variant="body2" sx={{ opacity: 0.7, mt: 3 }}>
+          © {new Date().getFullYear()} Analytus. All rights reserved.
+        </Typography>
+      </Container>
+    </Box>
+  );
+};
 
-                    <Box sx={{ py: 4, display: 'flex', flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Typography variant='body2' sx={{ color: 'text.secondary' }}>© {currentYear} Analytus ICT. All rights reserved.</Typography>
-                        <Box sx={{ display: 'flex', gap: 3 }}>
-                            {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(
-                                (item) => (
-                                    <Link
-                                        key={item}
-                                        href="#"
-                                        className="text-sm text-[#4F4F4F] transition-colors"
-                                    >
-                                        {item}
-                                    </Link>
-                                )
-                            )}
-                        </Box>
-                    </Box>
-
-                </Container>
-            </footer>
-        </>
-    )
-}
-
-export default Footer
+export default Footer;
